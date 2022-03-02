@@ -37,9 +37,6 @@ class Menu {
                     this.viewCart();
                     break;
                 case '3':
-                    this.removeFromCart();
-                    break;
-                case '4':
                     this.purchaseItems();
                     break;
                 default:
@@ -55,8 +52,7 @@ class Menu {
         0) Exit
         1) Add items to Cart
         2) View items in Cart
-        3) Remove an item from Cart
-        4) Purchase items in Cart
+        3) Purchase items in Cart
         `);
     }
     showGroceriesMenuOptions(groceryList){
@@ -92,15 +88,19 @@ class Menu {
     }
     
     removeFromCart(){
-
+        let index = prompt (`Please select the index of the item you wish to remove:`);
+        if (index > -1 && index < this.groceries.length){
+            this.groceries.splice(index, 1);
+        }
     }
 
-    totalExpenses(){
-        let totalCost = 0;
-        for (let i = 0; i < this.groceries.length; i++){
-            totalCost += this.groceries[i].price;
-            return prompt (`Your total so far is: ${totalCost}`);
-        }
+    totalExpenses(price){ //sum not working currently, going to try reduce method
+        let sum = this.groceries.price.reduce((a, b) => a + (b[price] || 0), 0);
+        return alert (`Your current total is: ${sum}`);
+    }
+    
+    purchaseItems(){
+
     }
 }
 
